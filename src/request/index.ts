@@ -2,8 +2,6 @@ import axios from 'axios'
 import { ElMessage } from "element-plus"
 import { userInfoStore } from '@/store/modules/user'
 import { Configuration, UsersAPIApi, FileAPIApi } from "@/request/generator"
-import {storageLocal} from "@/utils/storage";
-import {STORAGE_KEY_AUTHORIZATION} from "@/types/constants";
 
 axios.defaults.timeout = 5000
 axios.defaults.baseURL = '/api'
@@ -22,7 +20,7 @@ axios.interceptors.response.use(response => {
 const $axios = axios
 
 const config = new Configuration({
-    accessToken: storageLocal.getItemDefault(STORAGE_KEY_AUTHORIZATION, "")
+    accessToken: userInfoStore.getAuthorization
 })
 
 const api = {

@@ -25,6 +25,9 @@ const useUserStoreFunc = defineStore('user', {
         setAuthorization(authorization: string) {
             this.authorization = authorization
             storageLocal.setItem(STORAGE_KEY_AUTHORIZATION, authorization)
+        },
+        getAuthorization() {
+            return storageLocal.getItem(STORAGE_KEY_AUTHORIZATION)
         }
     }
 })
