@@ -13,10 +13,10 @@
  */
 
 
-import { Configuration } from "./configuration";
+import type { Configuration } from "./configuration";
 // Some imports not used depending on template conditions
 // @ts-ignore
-import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
+import globalAxios, * as axios_1 from 'axios';
 
 export const BASE_PATH = "http://localhost".replace(/\/+$/, "");
 
@@ -49,7 +49,7 @@ export interface RequestArgs {
 export class BaseAPI {
     protected configuration: Configuration | undefined;
 
-    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected axios: AxiosInstance = globalAxios) {
+    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected axios: axios_1.AxiosInstance = globalAxios) {
         if (configuration) {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;

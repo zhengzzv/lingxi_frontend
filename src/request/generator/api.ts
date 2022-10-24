@@ -14,11 +14,11 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise ,AxiosInstance} from 'axios';
+import type { AxiosPromise, AxiosInstance} from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
+import * as base from './base';
 
 /**
  * 
@@ -342,10 +342,10 @@ export const FileAPIApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fileUpload: async (file: any, options: any = {}): Promise<RequestArgs> => {
+        fileUpload: async (file: any, options: any = {}): Promise<base.RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             if (file === null || file === undefined) {
-                throw new RequiredError('file','Required parameter file was null or undefined when calling fileUpload.');
+                throw new base.RequiredError('file','Required parameter file was null or undefined when calling fileUpload.');
             }
             const localVarPath = `/files/upload`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -412,7 +412,7 @@ export const FileAPIApiFp = function(configuration?: Configuration) {
          */
         async fileUpload(file: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await FileAPIApiAxiosParamCreator(configuration).fileUpload(file, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -443,9 +443,9 @@ export const FileAPIApiFactory = function (configuration?: Configuration, basePa
  * FileAPIApi - object-oriented interface
  * @export
  * @class FileAPIApi
- * @extends {BaseAPI}
+ * @extends {base.BaseAPI}
  */
-export class FileAPIApi extends BaseAPI {
+export class FileAPIApi extends base.BaseAPI {
     /**
      * 上传文件接口
      * @summary 上传文件
@@ -473,10 +473,10 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changeUserPwd: async (changePasswordRequest: ChangePasswordRequest, options: any = {}): Promise<RequestArgs> => {
+        changeUserPwd: async (changePasswordRequest: ChangePasswordRequest, options: any = {}): Promise<base.RequestArgs> => {
             // verify required parameter 'changePasswordRequest' is not null or undefined
             if (changePasswordRequest === null || changePasswordRequest === undefined) {
-                throw new RequiredError('changePasswordRequest','Required parameter changePasswordRequest was null or undefined when calling changeUserPwd.');
+                throw new base.RequiredError('changePasswordRequest','Required parameter changePasswordRequest was null or undefined when calling changeUserPwd.');
             }
             const localVarPath = `/users/password`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -533,10 +533,10 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createUser: async (createUserRequest: CreateUserRequest, options: any = {}): Promise<RequestArgs> => {
+        createUser: async (createUserRequest: CreateUserRequest, options: any = {}): Promise<base.RequestArgs> => {
             // verify required parameter 'createUserRequest' is not null or undefined
             if (createUserRequest === null || createUserRequest === undefined) {
-                throw new RequiredError('createUserRequest','Required parameter createUserRequest was null or undefined when calling createUser.');
+                throw new base.RequiredError('createUserRequest','Required parameter createUserRequest was null or undefined when calling createUser.');
             }
             const localVarPath = `/users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -592,7 +592,7 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        currentUser: async (options: any = {}): Promise<RequestArgs> => {
+        currentUser: async (options: any = {}): Promise<base.RequestArgs> => {
             const localVarPath = `/users/current`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -639,10 +639,10 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        deleteUser: async (id: number, options: any = {}): Promise<base.RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteUser.');
+                throw new base.RequiredError('id','Required parameter id was null or undefined when calling deleteUser.');
             }
             const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -693,7 +693,7 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listByPage: async (page?: number, size?: number, sort?: string, options: any = {}): Promise<RequestArgs> => {
+        listByPage: async (page?: number, size?: number, sort?: string, options: any = {}): Promise<base.RequestArgs> => {
             const localVarPath = `/users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -752,10 +752,10 @@ export const UsersAPIApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        login: async (loginRequest: LoginRequest, options: any = {}): Promise<RequestArgs> => {
+        login: async (loginRequest: LoginRequest, options: any = {}): Promise<base.RequestArgs> => {
             // verify required parameter 'loginRequest' is not null or undefined
             if (loginRequest === null || loginRequest === undefined) {
-                throw new RequiredError('loginRequest','Required parameter loginRequest was null or undefined when calling login.');
+                throw new base.RequiredError('loginRequest','Required parameter loginRequest was null or undefined when calling login.');
             }
             const localVarPath = `/users/login`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -814,7 +814,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async changeUserPwd(changePasswordRequest: ChangePasswordRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).changeUserPwd(changePasswordRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -828,7 +828,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async createUser(createUserRequest: CreateUserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).createUser(createUserRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -841,7 +841,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async currentUser(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).currentUser(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -855,7 +855,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async deleteUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).deleteUser(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -871,7 +871,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async listByPage(page?: number, size?: number, sort?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageDtoUserDto>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).listByPage(page, size, sort, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -885,7 +885,7 @@ export const UsersAPIApiFp = function(configuration?: Configuration) {
          */
         async login(loginRequest: LoginRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await UsersAPIApiAxiosParamCreator(configuration).login(loginRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+            return (axios: AxiosInstance = globalAxios, basePath: string = base.BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: (configuration?.basePath || basePath) + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
@@ -967,9 +967,9 @@ export const UsersAPIApiFactory = function (configuration?: Configuration, baseP
  * UsersAPIApi - object-oriented interface
  * @export
  * @class UsersAPIApi
- * @extends {BaseAPI}
+ * @extends {base.BaseAPI}
  */
-export class UsersAPIApi extends BaseAPI {
+export class UsersAPIApi extends base.BaseAPI {
     /**
      * 当前登陆用户修改密码
      * @summary 修改密码

@@ -5,10 +5,8 @@ import ElementPlus from 'element-plus'
 import { setupStore } from "@/store"
 
 import 'element-plus/dist/index.css'
-import './assets/main.css'
 
 const app = createApp(App)
-
 
 app.use(router)
 app.use(ElementPlus)

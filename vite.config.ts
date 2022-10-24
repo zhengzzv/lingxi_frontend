@@ -10,7 +10,15 @@ export default defineConfig( ({command, mode}) => {
   const envs = loadEnv(mode, process.cwd())
   return {
     server: {
-        port: Number.parseInt(envs.VITE_PORT),
+      hmr: true,
+      port: Number.parseInt(envs.VITE_PORT),
+      proxy: {
+          [envs.VITE_PROXY_DOMAIN]: {
+              target: envs.VITE_PROXY_DOMAIN_REAL,
+              changeOrigin: true,
+              rewrite: (path: string) => regExps(path, envs.VITE_PROXY_DOMAIN)
+          }
+      }
         
     },
     plugins: [vue(), vueJsx()],
@@ -22,3 +30,8 @@ export default defineConfig( ({command, mode}) => {
     },
   }
 })
+
+// 跨域代理重写
+const regExps = (value: string, reg: string): string => {
+  return value.replace(new RegExp(reg, "g"), "");
+};
