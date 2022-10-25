@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia'
-import {store} from '..'
-import {storageLocal} from "@/utils/storage";
-import {STORAGE_KEY_AUTHORIZATION, STORAGE_KEY_USER_INFO} from "@/types/constants";
+import { defineStore } from 'pinia'
+import { store } from '..'
+import { storageLocal } from "@/utils/storage";
+import { STORAGE_KEY_AUTHORIZATION, STORAGE_KEY_USER_INFO } from "@/types/constants";
 import type { UserDto } from '@/request/generator';
 
 

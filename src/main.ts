@@ -5,6 +5,7 @@ import ElementPlus from 'element-plus'
 import { setupStore } from "@/store"
 
 import 'element-plus/dist/index.css'
+import "tailwindcss/tailwind.css"
 
 const app = createApp(App)
 
