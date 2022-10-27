@@ -1,20 +1,20 @@
 <template>
   <canvas
-      ref="domRef"
-      :width="props.width"
-      :height="props.height"
-      class="cursor-pointer"
-      @click="getImgCode"
+    ref="domRef"
+    :width="props.width"
+    :height="props.height"
+    class="cursor-pointer"
+    @click="getImgCode"
   />
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, watch} from "vue";
+import { onMounted, ref, watch } from "vue";
 
 interface Props {
   code?: string;
   width?: number;
-  height?: number
+  height?: number;
 }
 
 interface Emits {
@@ -24,7 +24,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   code: "",
   width: 120,
-  height: 40
+  height: 40,
 });
 
 const emit = defineEmits<Emits>();
@@ -44,7 +44,6 @@ function getImgCode() {
 onMounted(() => {
   getImgCode();
 });
-
 
 function randomNum(min: number, max: number) {
   const num = Math.floor(Math.random() * (max - min) + min);
@@ -100,17 +99,15 @@ function draw(dom: HTMLCanvasElement, width: number, height: number) {
   return imgCode;
 }
 
-
 watch(
-    () => props.code,
-    newValue => {
-      setImgCode(newValue);
-    }
+  () => props.code,
+  (newValue) => {
+    setImgCode(newValue);
+  }
 );
-watch(imgCode, newValue => {
+watch(imgCode, (newValue) => {
   emit("update", newValue);
 });
 
-defineExpose({getImgCode});
+defineExpose({ getImgCode });
 </script>
-

@@ -1,24 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
+import HomeView from "../views/HomeView.vue";
+
+const routes1: RouteRecordRaw[] = [
+  {
+    path: "/",
+    redirect: "/home",
+  },
+  {
+    path: "/home",
+    component: () => import("../pages/home.vue"),
+  },
+  {
+    path: "/login",
+    component: () => import("../pages/login.vue"),
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../pages/login.vue'),
-      meta: {
-          label: '登录',
-          hasNoTabs: true
-      }
-    }
-  ]
-})
+  routes: routes1,
+});
 
-export default router
+export default router;
