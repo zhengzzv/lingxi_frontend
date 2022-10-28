@@ -1,6 +1,7 @@
 export function getUUID(length: number, radix: number) {
   const chars =
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
+  // eslint-disable-next-line prefer-const
   let uuid = [],
     i;
   radix = radix || chars.length;

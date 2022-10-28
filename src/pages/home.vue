@@ -5,13 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  reactive,
-  toRefs,
-  onBeforeMount,
-  onMounted,
-  watchEffect,
-} from "vue";
+import { reactive, toRefs, onBeforeMount, onMounted, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 /**
  * 仓库
