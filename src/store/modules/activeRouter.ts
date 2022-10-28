@@ -1,6 +1,4 @@
-import { ta } from "element-plus/es/locale";
 import { defineStore } from "pinia";
-import { store } from "..";
 
 export class EditableTab {
   constructor(
